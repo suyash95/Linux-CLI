@@ -8,17 +8,17 @@ const linuxFunctions = {
     "pwd": root.pwd,
     "rm": root.rm,
     "clear" : root.sessionClear,
-    "default": () => "Invalid Command"
+    "default": () => "ERR: CANNOT RECOGNIZE INPUT."
 };
 
 const start = async() => {
     try {
-        const option = await question(root.curDir.pwd());
+    const option = await question(root.curDir.pwd());
     const method = linuxFunctions[option.cmd] || linuxFunctions["default"];
     const res = method(option.args);
     console.log(res)
     } catch (error) {
-        console.log(error)
+        console.log(error.message)
     }
 
     start();

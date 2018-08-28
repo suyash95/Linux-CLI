@@ -24,8 +24,15 @@ class Linux {
     }
 
     mkdir(path) {
+        let l = path.length
+        let arr1 = [...this.root.list]
+        if(arr1.length>0){
+        if(arr1[0].name == path[l-1]){
+            return "ERR: DIRECTORY ALREADY EXISTS"
+        }
+    }
         this.curDir.mkdir(path);
-        return "SUCC: Created"
+        return "SUCC: CREATED"
     }
 
     cd(path) {
@@ -38,15 +45,22 @@ class Linux {
     }
 
     rm(path){
+        if(path.size ==1 && path[0]==="~"){
+            return "Invalid operation"
+        }
         const tmp = this.cd(path);
         this.curDir.rm(tmp);
-        return "deleted successfully"
+        this.curDir = this.curDir.cd([".."])
+        
+        
+        return "SUCC: DELETED"
     }
 
     sessionClear(){
-      let data = new Dir("~")
-      this.curDir = data
-      return "SUCC: CLEARED: RESET TO ROOT"
+        let data = new Dir("~")
+        this.curDir = data
+        return "SUCC: CLEARED: RESET TO ROOT"
+
     }
 
 }

@@ -26,7 +26,13 @@ class Dir {
 
     ls() {
         try{
-        return [...this.list].map(dir => dir.name);
+        return [...this.list].map(dir => {
+            if(dir.name!= undefined){
+                return dir.name
+            }
+        else{
+            throw Error()
+        }});
         }
         catch(error){
             return []
@@ -56,7 +62,7 @@ class Dir {
                 if (nd) {
                     curDir = nd;
                 } else {
-                    throw new Error();
+                    throw new Error("ERR: INVALID PATH");
                 }
             }
         });
@@ -111,13 +117,12 @@ class Dir {
     }
 
     rm(tmp) {
-        if(tmp){
         for(var i=0;i<tmp.size;i++){
-            this.rm(tmp[i])
+            this.rm(tmp[i]);
         }
-        delete tmp.name
-        delete tmp.list
-    }
+        delete tmp.name;
+        delete tmp.list;
+    
     }
 
     toString() {
