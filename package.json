@@ -1,0 +1,19 @@
+{
+    "name": "linux-path-traversal",
+    "version": "1.0.0",
+    "description": "A basic Linux Command Utility",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "bin": {
+        "linux": "./index.js"
+    },
+    "keywords": [
+        "linux",
+        "os",
+        "commands"
+    ],
+    "author": "Suyash Singh",
+    "license": "ISC"
+}
