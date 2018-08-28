@@ -12,10 +12,14 @@ const linuxFunctions = {
 };
 
 const start = async() => {
-    const option = await question(root.curDir.pwd());
+    try {
+        const option = await question(root.curDir.pwd());
     const method = linuxFunctions[option.cmd] || linuxFunctions["default"];
     const res = method(option.args);
     console.log(res)
+    } catch (error) {
+        console.log(error)
+    }
 
     start();
 };
